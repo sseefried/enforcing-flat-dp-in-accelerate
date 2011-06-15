@@ -22,11 +22,10 @@ data Array a = AnArray -- just a tag
 data Acc s a where
   Map      :: (forall t.Exp t a -> Exp t b) -> Acc s (Array a) -> Acc s (Array b)
   Use      :: Array a -> Acc s (Array a)
-  Atag     :: Int -> Acc s a
-  Generate :: Exp s Int -> (forall t.Exp t Int -> Exp t a) -> Acc s (Array a)
+
+
 
 data Exp s a where
-  Tag         :: Exp s t
   PrimApp     :: PrimFun -> Exp s (Int,Int) -> Exp s Int
   Tup2        :: (Exp s Int, Exp s Int) -> Exp s (Int,Int)
   Const       :: Int -> Exp s Int
